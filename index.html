@@ -1,44 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>CSS Box Styling</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <header>
-      <div class= "large-font">Word Guess Game</div>
-      <button class="start-button">Start</button>
-    </header>
+<html lang="en">
 
-    <main>
-      <section>
-        <div class="card word-guess">
-          <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
-        </div>
-      </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-      <section>
-        <div class="card results">
-          <div class = "win-loss-container">
-          <div>
-          <h2>Wins: <span class="win">0 </span> </h2>
-          <h2>Losses: <span class="lose">0</span></h2>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>Coding worlds quiz</title>
+</head>
+
+<body class="h-100">
+    <div class="container-fluid">
+        <div class="row mb-3 pt-3">
+            <div class="col-auto">
+                <a href="#" id="high-scores-link" onclick="viewHighScores()">Display Highest Scores</a>
+                <a href="#" id="back-to-start-link" onclick="goBackToStart()" style="display: none;">Back to start
+                    over</a>
+            </div>
+            <div id="game-clock-container" class="col text-right">
+                Time: <span id="game-clock">0</span>
+            </div>
         </div>
-          <button class="reset-button">Reset Score</button>
-      </div>
-          <div class= "card timer">
-            <div class = "timer-text">
-            <div class="large-font timer-count">10</div>
-            <h3>seconds remaining</h3>
-          </div>
-        
-          </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <main class="col-12 col-md-8">
+                <h1 id="heading1" class="mb-3">Coding words quiz game</h1>
+                <div id="enter-initials-menu" class="py-4 mb-3 border-bottom" style="display: none;">
+                    <h3>Enter your initials</h3>
+                    <form>
+                        <input id="initials-input" type="text" name="score" style="border: 1px solid #d6d6d6;" /><button
+                            style="    background-color: #f6f5f5;
+                        border: 1px solid #d6d6d6;
+                        height: 28px;
+                        border-left: none;" id="submit-intials-btn">Submit</button>
+                    </form>
+                </div>
+                <div id="start-menu">
+                    <p>Think you know Java Scripts?
+                        Answer the following series of questions within the time limit.
+                        Incorrect answer penalizes your score time. </p>
+
+                    <button onclick="startQuiz()" class="btn btn-dark" style="color: greenyellow;">start quiz</button>
+                </div>
+
+                <div id="choices-menu">
+
+                </div>
+
+                <div id="scores-menu">
+
+                </div>
+            </main>
         </div>
-      </section>
-    </main>
-    <script src="assets/js/script.js"></script>
-  </body>
+    </div>
+    <script src="index.js"></script>
+</body>
+
 </html>
-
