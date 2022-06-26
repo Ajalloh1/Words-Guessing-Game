@@ -62,3 +62,69 @@ var questions = [
       answer: "a string"
     }
   ];
+  //.default time at start of game.//
+var questionNumber = 0;
+
+// Variable containing question array data
+// referred to in the functions
+var numberOfQuestions = questions.length;
+var questionChoices = questions[questionNumber].choices;
+
+// 15 seconds for each question to determine total game time
+var gameTimer = numberOfQuestions * 15;
+
+var finalScore;
+var highScores = [];
+
+// Check to see if there is an existing array of 
+// high scores in the localStorage
+renderHighScores()
+
+function renderHighScores() {
+    var savedHighScores = localStorage.getItem("high scores");
+    
+    if (savedHighScores === null) {
+        return;
+    }
+    var objectScores = JSON.parse(savedHighScores);
+    // console.log("Saved High Scores: " + savedHighScores);
+    highScores = objectScores;
+    
+}
+
+// Function for when user clicks the start button
+function startQuiz() {
+
+    // console.log("Question Number: " + questionNumber);
+
+    // Hide the default start menu
+    startMenu.setAttribute("style", "display: none;");
+    scoresMenu.setAttribute("style", "display: none;");
+    choicesContent.setAttribute("style", "display: block");
+    enterInitialsMenu.setAttribute("style", "display: none;");
+    choicesContent.innerHTML = " ";
+    viewHighScoresLink.setAttribute("style", "display: none;");
+
+    // Start countdown clock
+    countdownClock();
+
+    // Place first question in h1 and create buttons
+    // of the multiple choice answers below
+    questionHeading.textContent = questions[questionNumber].title;
+    listChoices();
+
+}
+
+function listChoices() {
+    // Loop through the available choices in
+    // the given question array index
+    for (var i = 0; i < questionChoices.length; i++) {
+        // Create, build, and place the available choices
+        var choiceBtn = document.createElement("button");
+        choiceBtn.setAttribute("class", "btn btn-dark btn-sm d-block my-2 choice-btn");
+        choiceBtn.setAttribute("id", "choice-" + i );
+        choiceBtn.textContent = questions[questionNumber].choices[i];
+        choicesContent.appendChild(choiceBtn);
+
+    }
+}
