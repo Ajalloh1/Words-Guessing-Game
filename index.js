@@ -1,4 +1,4 @@
-// refrence elements on html page 
+// refrence elements on html page by id//
 var choicesContent = document.querySelector("#choices-menu");
 var startMenu = document.getElementById('start-menu');
 var questionHeading = document.getElementById('heading1');
@@ -9,60 +9,60 @@ var scoresMenu = document.getElementById('scores-menu');
 var backToStartLink = document.getElementById('back-to-start-link');
 var viewHighScoresLink = document.getElementById('high-scores-link');
 
-// multiple choice questions and answer. logic//
+// multiple choice questions and answer. logic arrays . Questions  followed by mutiple choices and answer//
 var questions = [
     {
-      title: "which is a JS data type?",
-      choices: ["tags", "undefined", "window", "objects"],
-      answer: "objects"
+        title: "which is a JS data type?",
+        choices: ["tags", "undefined", "window", "objects"],
+        answer: "objects"
     },
     {
-      title: "An examle of an oject data type is ____.",
-      choices: ["tags", "string", "'number'", "Boolean"],
-      answer: "Boolean"
+        title: "An examle of an oject data type is ____.",
+        choices: ["tags", "string", "'number'", "Boolean"],
+        answer: "Boolean"
     },
     {
-      title: "Math.random() returns ____.",
-      choices: ["a number between 1 and 9", "a number between 0 and 9", "a number between 0 and 1", "a number between 0 and 99"],
-      answer: "a number between 0 and 1"
-    }, 
+        title: "Math.random() returns ____.",
+        choices: ["a number between 1 and 9", "a number between 0 and 9", "a number between 0 and 1", "a number between 0 and 99"],
+        answer: "a number between 0 and 1"
+    },
     {
-      title: "The appendChild() method places a node as the ____ child.",
-      choices: ["first", "last place you left off", "random", "last"],
-      answer: "last"
-    }, 
+        title: "The appendChild() method places a node as the ____ child.",
+        choices: ["first", "last place you left off", "random", "last"],
+        answer: "last"
+    },
     {
-      title: "The first index of an array is ____.",
-      choices: ["0", "1", "6", "custom"],
-      answer: "0"
-    }, 
+        title: "The first index of an array is ____.",
+        choices: ["0", "1", "6", "custom"],
+        answer: "0"
+    },
     {
-      title: "Javascript was created by ____.",
-      choices: ["Jeffrey Javascript", "Brendan Eich", "Who F. Cares Jr.", "Ned Flanders"],
-      answer: "Brendan Eich"
-    }, 
+        title: "Javascript was created by ____.",
+        choices: ["Jeffrey Javascript", "Brendan Eich", "Who F. Cares Jr.", "Ned Flanders"],
+        answer: "Brendan Eich"
+    },
     {
-      title: "What is not an example of an HTML event?",
-      choices: ["User hitting a key", "User clicking a mouse", "Web page loading", "Java scripts is easy"],
-      answer: "Java scripts is easy"
-    }, 
+        title: "What is not an example of an HTML event?",
+        choices: ["User hitting a key", "User clicking a mouse", "Web page loading", "Java scripts is easy"],
+        answer: "Java scripts is easy"
+    },
     {
-      title: "What tag selects all elements with a href?",
-      choices: ["<script>", "<p>", "var", "[href]"],
-      answer: "[href]"
-    }, 
+        title: "What tag selects all elements with a href?",
+        choices: ["<script>", "<p>", "var", "[href]"],
+        answer: "[href]"
+    },
     {
-      title: "Which selects current html elements ______ ",
-      choices: ["null", "that", "this", "all of the above"],
-      answer: "this"
-    }, 
+        title: "Which selects current html elements ______ ",
+        choices: ["null", "that", "this", "all of the above"],
+        answer: "this"
+    },
     {
-      title: "'Jalloh' can be considered _____ in Javascript",
-      choices: ["a string", "a number", "a boolean value", "a shit opinion"],
-      answer: "a string"
+        title: "'Jalloh' can be considered _____ in Javascript",
+        choices: ["a string", "a number", "a boolean value", "a shit opinion"],
+        answer: "a string"
     }
-  ];
-  //.default time at start of game.//
+];
+//.varibales for start time..default time at start of game.//
 var questionNumber = 0;
 
 // Variable containing question array data
@@ -82,14 +82,14 @@ renderHighScores()
 
 function renderHighScores() {
     var savedHighScores = localStorage.getItem("high scores");
-    
+
     if (savedHighScores === null) {
         return;
     }
     var objectScores = JSON.parse(savedHighScores);
     // console.log("Saved High Scores: " + savedHighScores);
     highScores = objectScores;
-    
+
 }
 
 // Function for when user clicks the start button
@@ -122,7 +122,7 @@ function listChoices() {
         // Create, build, and place the available choices
         var choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("class", "btn btn-dark btn-sm d-block my-2 choice-btn");
-        choiceBtn.setAttribute("id", "choice-" + i );
+        choiceBtn.setAttribute("id", "choice-" + i);
         choiceBtn.textContent = questions[questionNumber].choices[i];
         choicesContent.appendChild(choiceBtn);
 
@@ -141,14 +141,14 @@ function correctAnswer() {
 // alert user that choisen answer is wrong
 function incorrectAnswer() {
     var incorrectNotify = document.createElement("div");
-    incorrectNotify.setAttribute("class", "border-top mt-3 pt-3");incorrectNotify.setAttribute("style", "font-size: 12px; color: red; font-weight: bold;");
+    incorrectNotify.setAttribute("class", "border-top mt-3 pt-3"); incorrectNotify.setAttribute("style", "font-size: 12px; color: red; font-weight: bold;");
     incorrectNotify.textContent = "You got the answer wrong!";
     choicesContent.appendChild(incorrectNotify);
 }
 
 // The timer that counts down when the game is started
 function countdownClock() {
-    var timerInterval = setInterval(function() {
+    var timerInterval = setInterval(function () {
         // Display time and decrease by second
         gameClock.textContent = gameTimer;
         gameTimer--;
@@ -161,9 +161,9 @@ function countdownClock() {
             questionNumber = 0;
             choicesContent.setAttribute("display", "none");
             startMenu.setAttribute("style", "display: block;");
-            questionHeading.textContent = "Your score is: " +  gameTimer;
+            questionHeading.textContent = "Your score is: " + gameTimer;
             gameTimer = numberOfQuestions * 15;
-        } 
+        }
         // Freeze clock if user runs through all the questions and end game
         else if (questionNumber === 10) {
             clearInterval(timerInterval);
@@ -173,30 +173,28 @@ function countdownClock() {
         }
 
     }, 1000);
-} 
+}
 
 
 // Add event to the button choices and see if what the 
 // user clicks matches the answer in the questions array
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     if (event.target.matches('.choice-btn')) {
         // console.log(event.target.textContent);
         event.stopPropagation();
         event.preventDefault();
         // Condition if user selects correct answer
         if (event.target.textContent === questions[questionNumber].answer) {
-            
-            
 
             // Move on to the next question
             questionNumber = questionNumber + 1;
-            // Add time to the clock
+            // add 5 secnds to the clock when user guess right
             gameTimer += 5;
-
+            ////...textContent to display on screen//
             if (questionNumber <= (numberOfQuestions - 1)) {
                 questionHeading.textContent = questions[questionNumber].title;
-                    // Run function to clear buttons
-                    // and list new choices
+                // Run function to clear buttons
+                // and list new choices
                 choicesContent.innerHTML = " ";
                 listChoices();
                 // Inform user that they got the right answer
@@ -213,16 +211,14 @@ document.addEventListener("click", function(event) {
                 startMenu.setAttribute("style", "display: block;");
                 viewHighScoresLink.setAttribute("style", "display: inline;");
                 // Display the user's final score
-                questionHeading.textContent = "Your score is: " +  gameTimer;
+                questionHeading.textContent = "Your score is: " + gameTimer;
                 // User's final score is equal to the time left in the game
                 finalScore = gameTimer;
             }
-
-            
-        } 
+        }
         // Condition if user selects wrong answer
         else if (event.target.textContent !== questions[questionNumber].answer) {
-            
+
             // Move on to the next question
             questionNumber = questionNumber + 1;
             // Remove time from the clock
@@ -230,8 +226,8 @@ document.addEventListener("click", function(event) {
 
             if (questionNumber <= (numberOfQuestions - 1)) {
                 questionHeading.textContent = questions[questionNumber].title;
-                    // Run function to clear buttons
-                    // and list new choices
+                // Run function to clear buttons
+                // and list new choices
                 choicesContent.innerHTML = " ";
                 listChoices();
                 // Inform user that they got the wrong answer
@@ -247,12 +243,11 @@ document.addEventListener("click", function(event) {
                 startMenu.setAttribute("style", "display: block;");
                 viewHighScoresLink.setAttribute("style", "display: inline;");
                 // Display the user's final score
-                questionHeading.textContent = "Your score is: " +  gameTimer;
+                questionHeading.textContent = "Your score is: " + gameTimer;
                 // User's final score is equal to the time left in the game
                 finalScore = gameTimer;
             }
-            
-            
+
         }
     }
 });
@@ -261,7 +256,7 @@ function enterInitials(event) {
     event.preventDefault();
     // Take the value the user enters into the input after game ends
     var userInitials = document.getElementById('initials-input').value;
-    
+
     // Object containing the user initials and final score
     var userScores = {
         initials: userInitials,
@@ -284,3 +279,67 @@ function enterInitials(event) {
     choicesContent.innerHTML = " ";
 
 }
+
+// Go back to start Menu
+function goBackToStart() {
+    backToStartLink.setAttribute("style", "display: none;")
+    viewHighScoresLink.setAttribute("style", "display: inline;")
+    startMenu.setAttribute("style", "display: block;");
+    scoresMenu.setAttribute("style", "display: none;");
+    choicesContent.setAttribute("style", "display: none");
+    enterInitialsMenu.setAttribute("style", "display: none;");
+    questionHeading.textContent = "Coding Quiz Challenge";
+}
+
+// When user clicks submit, enter their score
+// and their initials to their local Storage
+enterInitialsBtn.addEventListener("click", enterInitials);
+
+function viewHighScores() {
+    // Show the score menu with title
+    scoresMenu.innerHTML = " ";
+    startMenu.setAttribute("style", "display: none;");
+    scoresMenu.setAttribute("style", "display: block;");
+    choicesContent.setAttribute("style", "display: none");
+    enterInitialsMenu.setAttribute("style", "display: none;");
+    questionHeading.textContent = "View High Scores";
+    backToStartLink.setAttribute("style", "display: inline;");
+    viewHighScoresLink.setAttribute("style", "display: none;");
+
+    // Grab the high scores from user's local storage
+    var highScoreList = window.localStorage.getItem("high scores");
+
+    // Convert the high scores from strings to an array of objects
+    var highScoreObject = JSON.parse(highScoreList);
+
+    // console.log(highScoreObject);
+
+    // Sort the objects from highest scores to lowest
+    highScoreObject.sort(highestToLowest);
+
+    // Cycle through the array and list each initial with 
+    // corresponding score as an element
+    for (var i = 0; i <= highScores.length - 1; i++) {
+        var highScoreEntry = document.createElement("div");
+        highScoreEntry.setAttribute("class", "alert alert-warning");
+        highScoreEntry.innerHTML = "<span style='font-weight: bold;''>" + highScoreObject[i].initials + ":</span> " + highScoreObject[i].score;
+        scoresMenu.appendChild(highScoreEntry);
+
+    }
+}
+
+// Function to sort the objects in the array
+// by highest score to lowest
+function highestToLowest(x, y) {
+    var scoreX = x.score;
+    var scoreY = y.score;
+
+    var comparison = 0;
+    if (scoreX > scoreY) {
+        comparison = 1;
+    } else if (scoreX < scoreY) {
+        comparison = -1;
+    }
+    return comparison * -1;
+}
+
