@@ -1,0 +1,28 @@
+
+html, body, .container {
+    height: 100%;
+    background-color:yellow;
+    color: blue;
+  }
+  
+  h1 {
+    font-family: 'Dosis', sans-serif;
+    color:blue;
+  }
+  .high-scores-link{
+    color: blue;
+  }
+  
+  .border-bottom {
+    border-bottom: 1px solid #FFFFFF!important;
+  }
+  
+  .border-top {
+    border-top: 1px solid #FFFFFF!important;
+  }
+  
+  a {
+    color: green;
+    font-weight: bold;
+  }
+  
